@@ -8,6 +8,6 @@ public class DojoDockerController {
 
     @RequestMapping("dojodocker")
     public String dojodocker() {
-        return "Servico Rest Dojo Docker funcionando!";
+        return "Dojo Docker Ok!";
     }
 }

@@ -1,2 +1,2 @@
 # dojodocker
-1 servico rest: /hello
+1 servico rest (GET): /dojodocker

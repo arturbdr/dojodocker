@@ -1,3 +1,4 @@
 logging:
+  file: /var/run/log/app.log
   level:
     com.dojo.docker: trace

@@ -31,4 +31,4 @@ build:
         cmd: "java -Xms128m -Xmx256m -jar /app.jar"
         ports: "8080"
         repository: arturbdr/dojodocker
-        tag: 1.0
+        tag: latest

@@ -1,0 +1,34 @@
+box:
+  id: combient/java-mvn
+  ports:
+    - "8080,8082"
+
+dev:
+  steps:
+    - script:
+        code: export PORT='8080'
+    - script:
+        code: 'mvn -Dmaven.repo.local=$WERCKER_CACHE_DIR package'
+    - script:
+        code: 'mvn -Dmaven.repo.local=$WERCKER_CACHE_DIR -Dspring.profiles.active=dev spring-boot:run'
+build:
+  steps:
+    - script:
+        code: 'mvn validate'
+    - script:
+        code: 'mvn compile'
+    - script:
+        code: 'mvn test'
+    - script:
+        code: 'mvn package'
+    - script:
+        code: 'mvn verify'
+    - script:
+        code: cp $WERCKER_SOURCE_DIR/target/dojodockerapp.jar /app.jar
+    - internal/docker-push:
+        username: $DOCKERHUB_USERNAME
+        password: $DOCKERHUB_PASSWORD
+        cmd: "java -Xms128m -Xmx256m -jar /app.jar"
+        ports: "8080"
+        repository: arturbdr/dojodocker
+        tag: latest

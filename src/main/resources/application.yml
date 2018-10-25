@@ -1,0 +1,14 @@
+endpoints:
+  web:
+    exposure:
+      include: "*"
+
+# Show details of all the health information (Hard Disk for example)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: "always"

@@ -1,13 +1,16 @@
 package com.dojo.docker;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Slf4j
 public class DojoDockerController {
 
-    @RequestMapping("dojodocker")
-    public String dojodocker() {
-        return "Dojo Docker Ok!";
+    @GetMapping("dojodocker")
+    public String dojodocker(final User user) {
+        log.info("{}", user);
+        return String.format("User passed %s", user.getName());
     }
 }

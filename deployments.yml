@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dojodocker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dojodocker
+  template:
+    metadata:
+      labels:
+        app: dojodocker
+    spec:
+      containers:
+      - name: dojodocker
+        image: arturbdr/dojo:1.0
+        ports:
+        - containerPort: 8080

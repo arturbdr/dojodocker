@@ -14,6 +14,19 @@ spec:
     spec:
       containers:
       - name: dojodocker
-        image: arturbdr/dojo:1.0
+        image: dojo:1.3
         ports:
         - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 50
+          timeoutSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 5

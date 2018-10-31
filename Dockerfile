@@ -1,7 +1,7 @@
 FROM maven:3.5.4-jdk-8-alpine AS build
 RUN mkdir -p /opt/app
 COPY ./ /opt/app
-RUN mvn -f /opt/app/pom.xml clean package
+RUN mvn -f /opt/app/pom.xml clean verify
 
 FROM openjdk:8u181-jdk-alpine3.8
 LABEL app.name=dojodocker

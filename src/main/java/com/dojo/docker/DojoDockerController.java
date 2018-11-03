@@ -8,6 +8,7 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @Slf4j
@@ -19,15 +20,25 @@ public class DojoDockerController {
         return String.format("User passed %s", user.getName());
     }
 
-    @GetMapping("consumeMemory")
+    @GetMapping("dojodocker-slow")
+    public String dojodockerslow(final User user) {
+        log.info("{}", user);
+        try {
+            Thread.sleep(new Random().nextInt(5000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return String.format("User passed %s", user.getName());
+    }
+
+    @GetMapping("consume-memory")
     public void consuming() {
-        List l = new ArrayList<>();
+        List<Object> destroyerArrayList = new ArrayList<>();
 
         while (1 == 1) {
             byte b[] = new byte[1048576];
-            l.add(b);
-            Runtime rt = Runtime.getRuntime();
-            log.info("free memory: {}", rt.freeMemory());
+            destroyerArrayList.add(b);
+            log.info("free memory: {}", Runtime.getRuntime());
 
             final MemoryMXBean memoryBean = ManagementFactory.getMemoryMXBean();
             log.info("HeapMemoryMax: {}", memoryBean.getHeapMemoryUsage().getMax());

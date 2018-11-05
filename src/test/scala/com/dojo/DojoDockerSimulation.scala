@@ -13,12 +13,12 @@ import scala.concurrent.duration._
   * Running this stress test :
   *
   * LOCAL
-  * mvn gatling:test -Dgatling.simulationClass=com.dojo.DojoDocker -DtestEnvironment=LOCAL -DrampUsers=10 -DrampOverSeconds=60 -DmaxDurationSeconds=60 -Dgatling.charting.indicators.lowerBound=20 -Dgatling.charting.indicators.higherBound=40
+  * mvn gatling:test -Dgatling.simulationClass=com.dojo.DojoDockerSimulation -DtestEnvironment=LOCAL -DrampUsers=20 -DrampOverSeconds=60 -DmaxDurationSeconds=60 -Dgatling.charting.indicators.lowerBound=20 -Dgatling.charting.indicators.higherBound=40
   *
   *
   */
-class DojoDocker extends Simulation {
-  println("===> DojoDocker <===")
+class DojoDockerSimulation extends Simulation {
+  println("===> DojoDockerSimulation <===")
 
   val environments = Map(
     "LOCAL" -> "http://localhost:8080")
@@ -37,7 +37,7 @@ class DojoDocker extends Simulation {
     .acceptHeader("application/json;charset=UTF-8")
     .userAgentHeader("5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36")
 
-  val reqDojodockerSlow: HttpRequestBuilder = http("/dojodockerslow")
+  val reqDojodockerSlow: HttpRequestBuilder = http("/dojodocker-slow")
     .get("/dojodocker-slow/?name=${name}&age=${age}")
     .check(status.is(200))
 

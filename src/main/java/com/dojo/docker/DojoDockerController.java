@@ -24,7 +24,7 @@ public class DojoDockerController {
     public String dojodockerslow(final User user) {
         log.info("{}", user);
         try {
-            Thread.sleep(new Random().nextInt(5000));
+            Thread.sleep(new Random().nextInt(100));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -1,15 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: dojodocker-ingress
+  name: ingress
   namespace: dojodocker-namespace
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
-      - path: /dojoingress
+      - path: /ingress
         backend:
-          serviceName: dojodocker-service
+          serviceName: service
           servicePort: 80

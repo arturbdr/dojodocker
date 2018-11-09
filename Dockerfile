@@ -1,4 +1,4 @@
-FROM maven:3.5.4-jdk-8-alpine AS build
+FROM maven:3.6.0-jdk-8 AS build
 RUN mkdir -p /opt/app
 COPY ./ /opt/app
 RUN mvn -f /opt/app/pom.xml clean verify

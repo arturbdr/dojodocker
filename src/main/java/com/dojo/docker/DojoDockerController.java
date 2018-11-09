@@ -17,7 +17,7 @@ public class DojoDockerController {
     @GetMapping("dojodocker")
     public String dojodocker(final User user) {
         log.info("{}", user);
-        return String.format("User passed %s", user.getName());
+        return String.format("User passed %s", user);
     }
 
     @GetMapping("dojodocker-slow")
@@ -26,14 +26,15 @@ public class DojoDockerController {
         try {
             Thread.sleep(new Random().nextInt(100));
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error("interrupted", e);
+            throw new RuntimeException(e);
         }
-        return String.format("User passed %s", user.getName());
+        return String.format("User passed %s", user);
     }
 
     @GetMapping("consume-memory")
     public void consuming() {
-        List<Object> destroyerArrayList = new ArrayList<>();
+        final List<Object> destroyerArrayList = new ArrayList<>();
 
         while (1 == 1) {
             byte b[] = new byte[1048576];

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dojodocker-config
+  namespace: dojodocker-namespace
+data:
+  LOG_LEVEL: debug
+  APP_NAME: dojodocker

@@ -5,7 +5,7 @@ object Recorder extends App {
 
 	val props = new RecorderPropertiesBuilder()
 		.simulationsFolder(IDEPathHelper.recorderSimulationsDirectory.toString)
-		.simulationPackage("com.jumbo")
+		.simulationPackage("com.dojo")
 		.resourcesFolder(IDEPathHelper.resourcesDirectory.toString)
 
 	GatlingRecorder.fromMap(props.build, Some(IDEPathHelper.recorderConfigFile))

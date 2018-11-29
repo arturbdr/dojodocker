@@ -22,7 +22,7 @@
     </parent>
 
     <properties>
-        <gatling.version>3.0.0</gatling.version>
+        <gatling.version>3.0.1</gatling.version>
         <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
         <java.version>1.8</java.version>
         <maven-scm-plugin.version>1.11.1</maven-scm-plugin.version>

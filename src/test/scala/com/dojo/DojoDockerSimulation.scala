@@ -44,21 +44,17 @@ class DojoDockerSimulation extends Simulation {
     .get("/dojodocker-slow")
     .queryParam("name", "${name}")
     .queryParam("age", "${age}")
-    .check(status.is(200)
-    .check(regex("*").saveAs("allResponse")))
+    .check(status.is(200))
 
 
   var scnReqDojodockerslow: ScenarioBuilder = scenario("Get user with random delay time")
     .feed(jsonFileFeeder)
     .exec(reqDojodockerSlow)
-    .exec { session =>
-      println(session)
-      session
-    }
-    .exec { session =>
-      println(session("allResponse").as[String])
-      session
-    }
+//    .exec { session =>
+//      println(session)
+//      session
+//    }
+
 
   setUp(
     scnReqDojodockerslow.inject(

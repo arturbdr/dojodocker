@@ -1,0 +1,22 @@
+FROM arturbdr/custom-gatling:1.1 AS build
+RUN mkdir -p /opt/app
+COPY ./ /opt/app
+
+FROM arturbdr/custom-gatling:1.1
+
+RUN yum install -y wget unzip
+
+RUN wget https://www.yourkit.com/download/docker/YourKit-JavaProfiler-2019.1-docker.zip -P /tmp/ && \
+  unzip /tmp/YourKit-JavaProfiler-2019.1-docker.zip -d /usr/local && \
+  rm /tmp/YourKit-JavaProfiler-2019.1-docker.zip
+
+
+RUN mkdir -p /opt/app
+COPY ./target/dojodockerapp.jar /opt/app/dojodockerapp.jar
+ARG JDK8_STUFF="-Djava.security.egd=file:/dev/./urandom -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -agentpath:/usr/local/YourKit-JavaProfiler-2019.1/bin/linux-x86-64/libyjpagent.so=port=10001,listen=all"
+ARG DEFAULT_JAVA_OPTS="-Xms256m -Xmx512m $JDK8_STUFF"
+ENV JAVA_OPTS=$DEFAULT_JAVA_OPTS
+ENTRYPOINT java $JAVA_OPTS  -jar /opt/app/dojodockerapp.jar
+EXPOSE 10001 8080
+# execute a shel with -l to process the aliases. Example
+#docker exec -it <containerId> sh -l

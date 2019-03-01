@@ -11,7 +11,7 @@
     <name>dojodockerapp</name>
 
     <prerequisites>
-        <maven>3.5</maven>
+        <maven>3.4</maven>
     </prerequisites>
 
     <parent>
@@ -22,15 +22,14 @@
     </parent>
 
     <properties>
-        <gatling-maven-plugin>3.0.1</gatling-maven-plugin>
+        <gatling-maven-plugin>3.0.2</gatling-maven-plugin>
         <gatling.version>3.0.3</gatling.version>
-        <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
         <java.version>1.8</java.version>
         <maven-scm-plugin.version>1.11.1</maven-scm-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <revision>0-SNAPSHOT</revision> <!-- This is specific for the project release. Don't remove it -->
-        <scala-maven-plugin.version>3.4.2</scala-maven-plugin.version>
     </properties>
 
     <dependencies>

@@ -25,7 +25,7 @@
         <gatling-maven-plugin>3.0.2</gatling-maven-plugin>
         <gatling.version>3.0.3</gatling.version>
         <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <maven-scm-plugin.version>1.11.1</maven-scm-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -229,6 +229,10 @@
                 <configuration>
                     <tag>${project.artifactId}-${project.version}</tag>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
 
             <!-- To generate a new version and create a remote git tag:-->

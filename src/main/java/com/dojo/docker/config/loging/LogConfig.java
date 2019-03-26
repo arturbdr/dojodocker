@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @Component
-public class LogingConfig extends CommonsRequestLoggingFilter {
+public class LogConfig extends CommonsRequestLoggingFilter {
 
     @Override
     protected boolean shouldLog(HttpServletRequest request) {
@@ -18,10 +18,9 @@ public class LogingConfig extends CommonsRequestLoggingFilter {
 
     @Override
     protected void beforeRequest(HttpServletRequest request, String message) {
-        request.getHeaderNames().asIterator().forEachRemaining(headerName -> {
-            MDC.put(headerName, request.getHeader(headerName));
-        });
-
+        request.getHeaderNames()
+                .asIterator()
+                .forEachRemaining(headerName -> MDC.put(headerName, request.getHeader(headerName)));
         log.info("starting");
     }
 

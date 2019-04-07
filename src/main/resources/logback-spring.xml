@@ -1,20 +1,14 @@
 <configuration>
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-            <providers>
-                <pattern>
-                    <pattern>
-                        {
-                        "logger": "%logger",
-                        "thread": "%thread",
-                        "host": "%mdc{host}",
-                        "message": "%message",
-                        "user-agent": "%mdc{user-agent}"
-                        }
-                    </pattern>
-                </pattern>
-
-            </providers>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="com.dojo.docker.config.log.MaskingLayout">
+                <maskPattern>\"ssn\"\s*:\s*\"(.*?)\"</maskPattern> <!-- SSN JSON pattern -->
+                <maskPattern>\"address\"\s*:\s*\"(.*?)\"</maskPattern> <!-- address JSON pattern -->
+                <maskPattern>(\d+\.\d+\.\d+\.\d+)</maskPattern> <!-- simple IPv4 pattern -->
+                <maskPattern>(\w+@\w+\.\w+)</maskPattern> <!-- simple email pattern -->
+                <maskPattern>Cookie:\s*(.*?)\s</maskPattern> <!-- Cookie header pattern -->
+                <pattern>%-5p [%d{ISO8601,UTC}] [%thread] %c: %m%n%rootException</pattern>
+            </layout>
         </encoder>
     </appender>
 

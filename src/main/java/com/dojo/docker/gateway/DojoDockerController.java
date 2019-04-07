@@ -1,5 +1,6 @@
-package com.dojo.docker;
+package com.dojo.docker.gateway;
 
+import com.dojo.docker.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,13 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static net.logstash.logback.argument.StructuredArguments.kv;
+
 @RestController
 @Slf4j
 public class DojoDockerController {
 
     @GetMapping("dojodocker")
     public String dojodocker(final User user) {
-        log.info("{}", user);
+        log.info("{} {}", user, kv("ssn", user.getSsn()));
         return String.format("User passed %s", user);
     }
 
@@ -33,7 +36,7 @@ public class DojoDockerController {
     }
 
     @GetMapping("consume-memory")
-    public void consuming() {
+    public void destroyMemory() {
         final List<Object> destroyerArrayList = new ArrayList<>();
 
         while (1 == 1) {

@@ -93,8 +93,8 @@
                 <version>${jacoco-maven-plugin.version}</version>
                 <configuration>
                     <excludes>
-                        <exclude>**/configuration/**</exclude>
-                        <exclude>**/RouteplannerApplication*</exclude>
+                        <exclude>**/config/**</exclude>
+                        <exclude>**/DojodockerappApplication*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

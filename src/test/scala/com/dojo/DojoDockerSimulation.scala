@@ -32,7 +32,7 @@ class DojoDockerSimulation extends Simulation {
   val rampOverEnv: String = Option(System.getProperty("rampOverSeconds")) getOrElse "30"
   val maxDurationSeconds: String = Option(System.getProperty("maxDurationSeconds")) getOrElse "30"
 
-  val jsonFileFeeder: SourceFeederBuilder[Any] = jsonFile("gatling-user-feed.json").random
+  val jsonFileFeeder: SourceFeederBuilder[Any] = jsonFile("gatling-user-feed.json").circular
 
   val httpConf: HttpProtocolBuilder = http
     .baseUrl(baseURL)

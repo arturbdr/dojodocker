@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: dojodocker
-        image: dojo:1.3
+        image: dojo:1.0
         ports:
         - containerPort: 8080
         readinessProbe:

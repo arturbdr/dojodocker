@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dojo-nodeport
+  namespace: dojodocker-namespace
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+    - nodePort: 30081
+      port: 8080
+      protocol: TCP
+  selector:
+    app : dojodocker
+  sessionAffinity: None
+  type: NodePort

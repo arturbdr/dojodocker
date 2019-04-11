@@ -14,19 +14,19 @@ import scala.concurrent.duration._
   * Running this stress test :
   *
   * LOCAL
-  * mvn clean gatling:test -Dgatling.simulationClass=com.dojo.DojoDockerSimulation -DtestEnvironment=LOCAL
-  * mvn clean gatling:test -Dgatling.simulationClass=com.dojo.DojoDockerSimulation -DtestEnvironment=INGRESS
+  * mvn clean gatling:test -Dgatling.simulationClass=com.dojo.DojoDockerSimulationIncrementUsersPerSec -Denvironment=LOCAL
+  * mvn clean gatling:test -Dgatling.simulationClass=com.dojo.DojoDockerSimulationIncrementUsersPerSec -Denvironment=INGRESS
   *
   *
   */
-class DojoDockerSimulation extends Simulation {
+class DojoDockerSimulationIncrementUsersPerSec extends Simulation {
   println("===> DojoDockerSimulation <===")
 
   val environments = Map(
     "LOCAL" -> "http://localhost:8080",
     "INGRESS" -> "http://192.168.99.107/ingress/")
 
-  val environment: String = Option(System.getProperty("testEnvironment")) getOrElse "LOCAL"
+  val environment: String = Option(System.getProperty("environment")) getOrElse "LOCAL"
   val baseURL: String = Option(System.getProperty("baseURL")) getOrElse environments(environment)
 
   val jsonFileFeeder: SourceFeederBuilder[Any] = jsonFile("gatling-user-feed.json").circular

@@ -10,10 +10,6 @@
 
     <name>dojodockerapp</name>
 
-    <prerequisites>
-        <maven>3.4</maven>
-    </prerequisites>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -23,7 +19,7 @@
 
     <properties>
         <gatling-maven-plugin>3.0.2</gatling-maven-plugin>
-        <gatling.version>3.0.3</gatling.version>
+        <gatling.version>3.1.1</gatling.version>
         <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
         <java.version>11</java.version>
         <maven-scm-plugin.version>1.11.1</maven-scm-plugin.version>
@@ -41,6 +37,8 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>io.gatling.highcharts</groupId>
@@ -254,10 +252,6 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-
             <!-- To generate a new version and create a remote git tag:-->
             <!-- mvn deploy scm:tag -Drevision=$BUILD_NUMBER-->
             <!-- End - Pluggins for versioning -->
@@ -269,6 +263,29 @@
                 <version>${gatling-maven-plugin}</version>
             </plugin>
             <!-- End - Stress testing plugins-->
+
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven-enforcer-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>${java.version}</version>
+                                </requireJavaVersion>
+                                <requireMavenVersion>
+                                    <version>3.6</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>

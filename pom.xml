@@ -25,7 +25,6 @@
         <maven-scm-plugin.version>1.11.1</maven-scm-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <revision>0-SNAPSHOT</revision> <!-- This is specific for the project release. Don't remove it -->
         <logstash-logback-encoder.version>5.3</logstash-logback-encoder.version>
     </properties>
 
@@ -221,8 +220,6 @@
                         <configuration>
                             <!-- Sets the VM argument line used when integration tests are run. -->
                             <argLine>${failsafeArgLine}</argLine>
-                            <!--<forkCount>5</forkCount>-->
-                            <!--<reuseForks>true</reuseForks>-->
                         </configuration>
                     </execution>
                 </executions>

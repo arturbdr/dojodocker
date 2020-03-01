@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 public class MaskingLayout extends ch.qos.logback.classic.PatternLayout {
 
     private Pattern multilinePattern;
-    private List<String> maskPatterns = new ArrayList<>();
+    private final List<String> maskPatterns = new ArrayList<>();
 
     public void addMaskPattern(String maskPattern) { // invoked for every single entry in the xml
         maskPatterns.add(maskPattern);

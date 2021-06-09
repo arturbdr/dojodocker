@@ -1,4 +1,4 @@
-FROM maven:3.6.0-jdk-11 AS build
+FROM maven:3.8.1-openjdk-11-slim AS build
 RUN groupadd -r usersapp && useradd -r -g usersapp appuser
 RUN mkdir -p /opt/app
 RUN mkdir -p /home/appuser/.m2/repository
@@ -8,7 +8,7 @@ USER appuser
 COPY ./ /opt/app
 RUN mvn -f /opt/app/pom.xml clean verify
 
-FROM openjdk:11.0.2-jdk
+FROM openjdk:11.0.11-jdk
 LABEL app.name=dojodocker
 RUN groupadd -r usersapp && useradd -r -g usersapp appuser
 RUN mkdir -p /opt/app

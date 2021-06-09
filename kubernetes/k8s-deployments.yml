@@ -4,7 +4,7 @@ metadata:
   name: dojodocker
   namespace: dojodocker-namespace
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: dojodocker
@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: dojodocker
-        image: dojo:1.0
+        image: dojodocker:1.1
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
         readinessProbe:

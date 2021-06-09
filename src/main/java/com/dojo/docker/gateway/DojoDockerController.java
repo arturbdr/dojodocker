@@ -28,7 +28,7 @@ public class DojoDockerController {
         log.info("{}", user);
         try {
             Thread.sleep(new Random().nextInt(100));
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
             log.error("interrupted", e);
             throw new RuntimeException(e);
         }

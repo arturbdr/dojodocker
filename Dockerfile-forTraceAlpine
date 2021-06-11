@@ -1,4 +1,4 @@
-FROM openjdk:8u191-jdk-alpine3.9
+FROM openjdk:11.0.11-jdk
 RUN apk add htop curl vim tree
 
 RUN wget https://www.yourkit.com/download/docker/YourKit-JavaProfiler-2019.1-docker.zip -P /tmp/ && \

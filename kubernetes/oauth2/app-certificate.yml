@@ -1,0 +1,18 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: dojodocker.dev.cloud.jumbo.com
+  namespace: cp-test
+spec:
+  acme:
+    config:
+      - dns01:
+          provider: aws-route53
+        domains:
+          - 'dojodocker.internal.dev.cloud.jumbo.com'
+  dnsNames:
+    - 'dojodocker.internal.dev.cloud.jumbo.com'
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt.dev.cloud.jumbo.com
+  secretName: dojodocker-tls.dev.cloud.jumbo.com

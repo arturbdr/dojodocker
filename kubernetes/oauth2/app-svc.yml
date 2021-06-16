@@ -1,12 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dojo-service
+  name: dojodocker
   namespace: cp-test
 spec:
   selector:
     app: dojodocker
   ports:
     - port: 80
-      targetPort: 8080
+      protocol: TCP
+      targetPort: 80
   type: ClusterIP

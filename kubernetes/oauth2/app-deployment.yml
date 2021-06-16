@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dojodocker
+  namespace: cp-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dojodocker
+  template:
+    metadata:
+      labels:
+        app: dojodocker
+    spec:
+      containers:
+        - name: dojodocker
+          image: nginx:1.21.0-alpine
+          ports:
+            - containerPort: 80

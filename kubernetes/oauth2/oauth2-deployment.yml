@@ -33,11 +33,11 @@ spec:
             - name: OAUTH2_PROXY_CLIENT_SECRET
               value: 4Da-MuuEz6W0oB_U4Ud07r1KPJrij4bZ_-U3jrLt
             - name: OAUTH2_PROXY_COOKIE_DOMAINS
-              value: ".jumbo.com"
+              value: ".dev.cloud.jumbo.com"
             - name: OAUTH2_PROXY_SET_XAUTHREQUEST
               value: "true"
             - name: "OAUTH2_PROXY_WHITELIST_DOMAINS"
-              value: ".jumbo.com"
+              value: ".dev.cloud.jumbo.com"
           image: quay.io/oauth2-proxy/oauth2-proxy:v7.1.3
           imagePullPolicy: Always
           name: oauth2-proxy
